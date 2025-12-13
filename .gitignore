@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Data files (KHÔNG commit data thô)
+data/raw/
+data/external/
+data/interim/
+*.csv
+*.xlsx
+*.xls
+*.json
+
+
+!data/sample_data.csv
+
+# Model & Artifacts
+models/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# Logs & Output
+logs/
+*.log
+outputs/
+results/
+reports/
+
+# Figures & Plots
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# Experiment tracking
+mlruns/
+wandb/
+tensorboard/
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# Test / Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build
+build/
+dist/
+*.egg-info/
