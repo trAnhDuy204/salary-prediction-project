@@ -92,7 +92,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Chuẩn Bị Dữ Liệu
-
+- link gg drive bộ dữ liệu: https://drive.google.com/file/d/1_bOVx3M4Zrdzdw_1qpVQbOfz8zhCKuo1/view?usp=drive_link
 - Đặt file `jobs.csv` vào thư mục `data/raw/`
 - Chạy các notebooks từ 01 đến 06 để xử lý dữ liệu và train model
 
@@ -216,7 +216,7 @@ FLASK_PORT = 5000
 FLASK_DEBUG = True
 
 # Model parameters
-EXCHANGE_RATE = 24000  # USD to VND
+EXCHANGE_RATE = 25  # USD to VND
 IQR_FACTOR = 3.0
 
 # Features
@@ -253,7 +253,7 @@ This project is licensed under the MIT License - see LICENSE file.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work*
+- **Trần Hà Anh Duy** - *Initial work*
 
 ## 🙏 Acknowledgments
 
@@ -263,9 +263,9 @@ This project is licensed under the MIT License - see LICENSE file.
 
 ## 📞 Contact
 
-- Email: your.email@example.com
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [Your Name](https://linkedin.com/in/your-profile)
+- Email: trananhduydl@gmail.com
+- GitHub: https://github.com/trAnhDuy204
+- LinkedIn: https://www.linkedin.com/in/tr%E1%BA%A7n-h%C3%A0-anh-duy-tran-3714b9380/
 
 ---
 

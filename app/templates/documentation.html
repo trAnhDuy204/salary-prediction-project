@@ -1,0 +1,592 @@
+{% extends "base.html" %}
+
+{% block title %}Tài Liệu API - Salary Predictor{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold mb-3">
+        <i class="fas fa-book text-primary"></i> Tài Liệu API
+    </h1>
+    <p class="lead text-secondary">
+        Hướng dẫn đầy đủ để tích hợp Salary Prediction API vào ứng dụng của bạn
+    </p>
+</div>
+
+<!-- Quick Start -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-rocket"></i> Quick Start
+                </h3>
+            </div>
+            <div class="card-body p-4">
+                <h5>Bắt đầu nhanh trong 3 bước:</h5>
+                <ol class="lead">
+                    <li>Gửi POST request đến <code>/api/predict</code></li>
+                    <li>Include thông tin công việc trong request body (JSON)</li>
+                    <li>Nhận kết quả dự đoán trong response</li>
+                </ol>
+                
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle"></i> 
+                    <strong>Base URL:</strong> <code>http://localhost:5000</code> (development) hoặc URL của production server
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- API Endpoints -->
+<div class="row mb-5">
+    <div class="col-12 mb-3">
+        <h2><i class="fas fa-plug text-success"></i> API Endpoints</h2>
+    </div>
+    
+    <!-- Endpoint 1: Predict -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">
+                    <span class="badge bg-dark me-2">POST</span>
+                    /api/predict
+                </h4>
+            </div>
+            <div class="card-body">
+                <h5>Mô tả:</h5>
+                <p>Dự đoán mức lương dựa trên thông tin công việc được cung cấp.</p>
+                
+                <h5 class="mt-4">Request Headers:</h5>
+                <pre class="bg-light p-3 rounded"><code>Content-Type: application/json</code></pre>
+                
+                <h5 class="mt-4">Request Body:</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "job_title": "Data Analyst",
+  "city": "Hồ Chí Minh",
+  "experience": "2-5 năm",
+  "position_level": "Nhân viên",
+  "skills": "Python, SQL, Excel, Tableau",
+  "job_fields": "IT, Data Analysis, Business Intelligence"
+}</code></pre>
+                
+                <h5 class="mt-4">Parameters:</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Tham số</th>
+                                <th>Type</th>
+                                <th>Bắt buộc</th>
+                                <th>Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>job_title</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-danger">Yes</span></td>
+                                <td>Tên công việc</td>
+                            </tr>
+                            <tr>
+                                <td><code>city</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-danger">Yes</span></td>
+                                <td>Thành phố làm việc</td>
+                            </tr>
+                            <tr>
+                                <td><code>experience</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-danger">Yes</span></td>
+                                <td>Mức kinh nghiệm (VD: "2-5 năm")</td>
+                            </tr>
+                            <tr>
+                                <td><code>position_level</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-danger">Yes</span></td>
+                                <td>Cấp bậc công việc</td>
+                            </tr>
+                            <tr>
+                                <td><code>skills</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-secondary">No</span></td>
+                                <td>Kỹ năng (phân cách bằng dấu phẩy)</td>
+                            </tr>
+                            <tr>
+                                <td><code>job_fields</code></td>
+                                <td>string</td>
+                                <td><span class="badge bg-secondary">No</span></td>
+                                <td>Lĩnh vực công việc</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h5 class="mt-4">Success Response (200 OK):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "success": true,
+  "data": {
+    "predicted_salary": 15000000,
+    "predicted_salary_formatted": "15,000,000 VND",
+    "confidence_interval": {
+      "lower": 12000000,
+      "upper": 18000000,
+      "lower_formatted": "12,000,000 VND",
+      "upper_formatted": "18,000,000 VND"
+    },
+    "salary_category": "Trung bình cao",
+    "model_info": {
+      "mae": 2500000,
+      "r2": 0.82,
+      "model_type": "RandomForestRegressor"
+    },
+    "input_summary": {
+      "experience_years": "2-5 năm",
+      "position": "Nhân viên",
+      "city": "Hồ Chí Minh",
+      "skills_count": 4
+    }
+  }
+}</code></pre>
+                
+                <h5 class="mt-4">Error Response (400 Bad Request):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "success": false,
+  "error": "Missing required fields: job_title, city"
+}</code></pre>
+                
+                <h5 class="mt-4">Error Response (500 Internal Server Error):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "success": false,
+  "error": "Internal server error message"
+}</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Endpoint 2: Model Info -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">
+                    <span class="badge bg-dark me-2">GET</span>
+                    /api/model-info
+                </h4>
+            </div>
+            <div class="card-body">
+                <h5>Mô tả:</h5>
+                <p>Lấy thông tin về mô hình Machine Learning đang được sử dụng.</p>
+                
+                <h5 class="mt-4">Response (200 OK):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "success": true,
+  "data": {
+    "model_type": "RandomForestRegressor",
+    "n_features": 52,
+    "test_mae": 2500000,
+    "test_rmse": 3200000,
+    "test_r2": 0.82,
+    "best_params": {
+      "n_estimators": 200,
+      "max_depth": 15,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1
+    }
+  }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Endpoint 3: Health Check -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <span class="badge bg-dark me-2">GET</span>
+                    /health
+                </h4>
+            </div>
+            <div class="card-body">
+                <h5>Mô tả:</h5>
+                <p>Kiểm tra trạng thái của hệ thống (health check endpoint).</p>
+                
+                <h5 class="mt-4">Response (200 OK):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "status": "healthy",
+  "predictor_loaded": true
+}</code></pre>
+                
+                <h5 class="mt-4">Response (500 Internal Server Error):</h5>
+                <pre class="bg-light p-3 rounded"><code>{
+  "status": "unhealthy",
+  "predictor_loaded": false
+}</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Code Examples -->
+<div class="row mb-5">
+    <div class="col-12 mb-3">
+        <h2><i class="fas fa-code text-primary"></i> Ví Dụ Code</h2>
+    </div>
+    
+    <!-- Python Example -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fab fa-python"></i> Python
+                </h4>
+            </div>
+            <div class="card-body">
+                <pre class="bg-dark text-light p-3 rounded"><code>import requests
+import json
+
+# API endpoint
+url = "http://localhost:5000/api/predict"
+
+# Request data
+data = {
+    "job_title": "Data Analyst",
+    "city": "Hồ Chí Minh",
+    "experience": "2-5 năm",
+    "position_level": "Nhân viên",
+    "skills": "Python, SQL, Excel",
+    "job_fields": "IT, Data Analysis"
+}
+
+# Make request
+response = requests.post(url, json=data)
+
+# Parse response
+if response.status_code == 200:
+    result = response.json()
+    if result['success']:
+        salary = result['data']['predicted_salary']
+        print(f"Predicted Salary: {salary:,} VND")
+    else:
+        print(f"Error: {result['error']}")
+else:
+    print(f"HTTP Error: {response.status_code}")</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Example -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">
+                    <i class="fab fa-js-square"></i> JavaScript (Fetch API)
+                </h4>
+            </div>
+            <div class="card-body">
+                <pre class="bg-dark text-light p-3 rounded"><code>// API endpoint
+const url = "http://localhost:5000/api/predict";
+
+// Request data
+const data = {
+    job_title: "Data Analyst",
+    city: "Hồ Chí Minh",
+    experience: "2-5 năm",
+    position_level: "Nhân viên",
+    skills: "Python, SQL, Excel",
+    job_fields: "IT, Data Analysis"
+};
+
+// Make request
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(result => {
+    if (result.success) {
+        const salary = result.data.predicted_salary;
+        console.log(`Predicted Salary: ${salary.toLocaleString()} VND`);
+    } else {
+        console.error('Error:', result.error);
+    }
+})
+.catch(error => {
+    console.error('Request failed:', error);
+});</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- cURL Example -->
+    <div class="col-lg-10 mx-auto mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-terminal"></i> cURL
+                </h4>
+            </div>
+            <div class="card-body">
+                <pre class="bg-dark text-light p-3 rounded"><code>curl -X POST http://localhost:5000/api/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "job_title": "Data Analyst",
+    "city": "Hồ Chí Minh",
+    "experience": "2-5 năm",
+    "position_level": "Nhân viên",
+    "skills": "Python, SQL, Excel",
+    "job_fields": "IT, Data Analysis"
+  }'</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Response Fields -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-list"></i> Giải Thích Response Fields
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>predicted_salary</code></td>
+                                <td>number</td>
+                                <td>Mức lương dự đoán (VND)</td>
+                            </tr>
+                            <tr>
+                                <td><code>predicted_salary_formatted</code></td>
+                                <td>string</td>
+                                <td>Mức lương đã format với dấu phẩy</td>
+                            </tr>
+                            <tr>
+                                <td><code>confidence_interval.lower</code></td>
+                                <td>number</td>
+                                <td>Giới hạn dưới của khoảng tin cậy</td>
+                            </tr>
+                            <tr>
+                                <td><code>confidence_interval.upper</code></td>
+                                <td>number</td>
+                                <td>Giới hạn trên của khoảng tin cậy</td>
+                            </tr>
+                            <tr>
+                                <td><code>salary_category</code></td>
+                                <td>string</td>
+                                <td>Phân loại: "Thấp", "Trung bình thấp", "Trung bình cao", "Cao"</td>
+                            </tr>
+                            <tr>
+                                <td><code>model_info.mae</code></td>
+                                <td>number</td>
+                                <td>Mean Absolute Error của mô hình</td>
+                            </tr>
+                            <tr>
+                                <td><code>model_info.r2</code></td>
+                                <td>number</td>
+                                <td>R² Score (độ chính xác mô hình)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Valid Values -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-check-circle"></i> Các Giá Trị Hợp Lệ
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h5><code>city</code></h5>
+                        <ul>
+                            <li>Hồ Chí Minh</li>
+                            <li>Hà Nội</li>
+                            <li>Đà Nẵng</li>
+                            <li>Cần Thơ</li>
+                            <li>Hải Phòng</li>
+                            <li>Biên Hòa</li>
+                            <li>và các thành phố khác...</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <h5><code>experience</code></h5>
+                        <ul>
+                            <li>Không yêu cầu</li>
+                            <li>Dưới 1 năm</li>
+                            <li>1-2 năm</li>
+                            <li>2-5 năm</li>
+                            <li>5-10 năm</li>
+                            <li>Trên 10 năm</li>
+                            <li>Và nhiều yêu cầu khác...</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <h5><code>position_level</code></h5>
+                        <ul>
+                            <li>Cộng tác viên</li>
+                            <li>Thực tập sinh</li>
+                            <li>Nhân viên</li>
+                            <li>Chuyên gia</li>
+                            <li>Trưởng nhóm</li>
+                            <li>Trưởng phòng</li>
+                            <li>Quản lý</li>
+                            <li>Phó giám đốc</li>
+                            <li>Giám đốc</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <h5><code>skills</code> (ví dụ)</h5>
+                        <ul>
+                            <li>Python, Java, JavaScript</li>
+                            <li>SQL, MySQL, PostgreSQL</li>
+                            <li>React, Angular, Vue</li>
+                            <li>AWS, Azure, GCP</li>
+                            <li>và nhiều kỹ năng khác...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Codes -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-exclamation-triangle"></i> Error Codes
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Code</th>
+                                <th>Mô tả</th>
+                                <th>Giải pháp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge bg-warning text-dark">400</span></td>
+                                <td>Bad Request - Thiếu thông tin bắt buộc</td>
+                                <td>Kiểm tra lại request body, đảm bảo có đủ các field bắt buộc</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-danger">500</span></td>
+                                <td>Internal Server Error - Lỗi server</td>
+                                <td>Liên hệ admin hoặc thử lại sau</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-secondary">404</span></td>
+                                <td>Not Found - Endpoint không tồn tại</td>
+                                <td>Kiểm tra lại URL endpoint</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rate Limiting -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="alert alert-info shadow">
+            <h4 class="alert-heading">
+                <i class="fas fa-tachometer-alt"></i> Rate Limiting
+            </h4>
+            <p>Hiện tại API không có giới hạn số request, nhưng vui lòng sử dụng hợp lý để đảm bảo chất lượng dịch vụ cho tất cả người dùng.</p>
+            <hr>
+            <p class="mb-0">
+                <strong>Khuyến nghị:</strong> Không quá 100 requests/phút từ một IP address.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Support -->
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow bg-light">
+            <div class="card-body text-center p-5">
+                <h3 class="mb-3">
+                    <i class="fas fa-question-circle text-primary"></i> Cần Hỗ Trợ?
+                </h3>
+                <p class="lead mb-4">
+                    Nếu bạn gặp vấn đề hoặc có câu hỏi về API, vui lòng liên hệ:
+                </p>
+                <div>
+                    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZczwJvbBGqnSbQPQFHZxDhclRSxFhcPmZTQCMQtrFWsbQmsMtRVHrWqtkBBfTzkvsRhrL" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-envelope"></i> Email Support
+                    </a>
+                    <a href="https://github.com/trAnhDuy204/salary-prediction-project/issues" class="btn btn-outline-secondary btn-lg">
+                        <i class="fab fa-github"></i> GitHub Issues
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+pre {
+    position: relative;
+}
+
+pre code {
+    display: block;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+}
+
+.table code {
+    background-color: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+</style>
+{% endblock %}

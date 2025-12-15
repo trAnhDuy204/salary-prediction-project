@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+
+{% block title %}Giới Thiệu - Salary Predictor{% endblock %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold mb-3">
+        <i class="fas fa-info-circle text-primary"></i> Giới Thiệu Dự Án
+    </h1>
+    <p class="lead text-secondary">
+        Hệ Thống Dự Đoán Mức Lương Bằng Machine Learning
+    </p>
+</div>
+
+<!-- Project Overview -->
+<div class="row mb-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-5">
+                <h2 class="mb-4">
+                    <i class="fas fa-rocket text-primary"></i> Tổng Quan Dự Án
+                </h2>
+                <p class="lead">
+                    Dự án <strong>Salary Prediction System</strong> là một ứng dụng web sử dụng công nghệ Machine Learning 
+                    để dự đoán mức lương phù hợp dựa trên các yếu tố như kinh nghiệm làm việc, kỹ năng chuyên môn, 
+                    vị trí công việc và khu vực địa lý.
+                </p>
+                <hr class="my-4">
+                <p>
+                    Với hơn <strong class="text-primary">85,000 tin tuyển dụng</strong> từ thị trường lao động Việt Nam tính đến ngày 22 tháng 4 năm 2025, 
+                    hệ thống được huấn luyện để cung cấp những dự đoán chính xác và hữu ích cho cả người tìm việc 
+                    lẫn nhà tuyển dụng.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Key Features -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-star text-warning"></i> Tính Năng Chính
+        </h2>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm hover-card border-primary">
+            <div class="card-body">
+                <div class="feature-icon-large bg-primary text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-brain fa-3x"></i>
+                </div>
+                <h4 class="card-title text-center">Machine Learning Tiên Tiến</h4>
+                <p class="card-text">
+                    Sử dụng thuật toán <strong>Random Forest Regressor</strong> được tối ưu hóa với:
+                </p>
+                <ul>
+                    <li>Hyperparameter tuning với GridSearchCV</li>
+                    <li>Cross-validation 5-fold</li>
+                    <li>Feature importance analysis</li>
+                    <li>Độ chính xác R² > 0.80</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm hover-card border-success">
+            <div class="card-body">
+                <div class="feature-icon-large bg-success text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-database fa-3x"></i>
+                </div>
+                <h4 class="card-title text-center">Dữ Liệu Thực Tế</h4>
+                <p class="card-text">
+                    Dựa trên bộ dữ liệu lớn từ thị trường Việt Nam:
+                </p>
+                <ul>
+                    <li>85,000+ tin tuyển dụng</li>
+                    <li>10+ thành phố lớn</li>
+                    <li>20+ lĩnh vực nghề nghiệp</li>
+                    <li>Cập nhật đến tháng 4/2025</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm hover-card border-info">
+            <div class="card-body">
+                <div class="feature-icon-large bg-info text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                </div>
+                <h4 class="card-title text-center">Phân Tích Chi Tiết</h4>
+                <p class="card-text">
+                    Kết quả dự đoán bao gồm:
+                </p>
+                <ul>
+                    <li>Mức lương dự đoán chính xác</li>
+                    <li>Khoảng tin cậy (confidence interval)</li>
+                    <li>Phân loại mức lương (thấp/trung bình/cao)</li>
+                    <li>Thông tin về độ chính xác mô hình</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm hover-card border-warning">
+            <div class="card-body">
+                <div class="feature-icon-large bg-warning text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-code fa-3x"></i>
+                </div>
+                <h4 class="card-title text-center">RESTful API</h4>
+                <p class="card-text">
+                    Dễ dàng tích hợp vào hệ thống của bạn:
+                </p>
+                <ul>
+                    <li>API endpoint đơn giản</li>
+                    <li>JSON request/response</li>
+                    <li>CORS enabled</li>
+                    <li>Tài liệu API đầy đủ</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Technology Stack -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-tools text-danger"></i> Công Nghệ Sử Dụng
+        </h2>
+    </div>
+    
+    <div class="col-lg-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-primary">
+                            <i class="fas fa-server"></i> Backend
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Python 3.9+</li>
+                            <li><i class="fas fa-check text-success"></i> Flask 3.0</li>
+                            <li><i class="fas fa-check text-success"></i> Scikit-learn</li>
+                            <li><i class="fas fa-check text-success"></i> Pandas & NumPy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-success">
+                            <i class="fas fa-paint-brush"></i> Frontend
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> HTML5 & CSS3</li>
+                            <li><i class="fas fa-check text-success"></i> Bootstrap 5</li>
+                            <li><i class="fas fa-check text-success"></i> JavaScript ES6+</li>
+                            <li><i class="fas fa-check text-success"></i> Font Awesome</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <h5 class="text-info">
+                            <i class="fas fa-robot"></i> Machine Learning
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success"></i> Random Forest</li>
+                            <li><i class="fas fa-check text-success"></i> Feature Engineering</li>
+                            <li><i class="fas fa-check text-success"></i> Cross-validation</li>
+                            <li><i class="fas fa-check text-success"></i> Hyperparameter Tuning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Workflow -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-project-diagram text-success"></i> Quy Trình Phát Triển
+        </h2>
+    </div>
+    
+    <div class="col-lg-10 mx-auto">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-badge bg-primary">1</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-search"></i> Thu Thập & Khám Phá Dữ Liệu</h5>
+                        <p class="mb-0">Load dữ liệu 85,000 tin tuyển dụng, phân tích thống kê mô tả, phát hiện outliers và missing values.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-badge bg-success">2</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-broom"></i> Làm Sạch Dữ Liệu</h5>
+                        <p class="mb-0">Xử lý giá trị thiếu, loại bỏ trùng lặp, chuẩn hóa định dạng và xử lý outliers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-badge bg-info">3</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-wrench"></i> Feature Engineering</h5>
+                        <p class="mb-0">Tạo 50+ features từ dữ liệu gốc, encoding, scaling và tạo interaction features.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-badge bg-warning">4</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-chart-bar"></i> Visualization</h5>
+                        <p class="mb-0">Tạo 15+ biểu đồ phân tích xu hướng lương, phân bổ công việc và correlation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-badge bg-danger">5</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-brain"></i> Modeling</h5>
+                        <p class="mb-0">Thử nghiệm 7 thuật toán ML, hyperparameter tuning và chọn mô hình tốt nhất.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-badge bg-purple">6</div>
+                <div class="timeline-panel card shadow-sm">
+                    <div class="card-body">
+                        <h5><i class="fas fa-check-circle"></i> Evaluation & Deployment</h5>
+                        <p class="mb-0">Đánh giá mô hình với cross-validation, phân tích residuals và deploy Flask app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Team -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-users text-primary"></i> Đội Ngũ Phát Triển
+        </h2>
+    </div>
+    
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow text-center">
+            <div class="card-body p-5">
+                <div class="team-member-avatar mx-auto mb-3">
+                    <i class="fas fa-user-circle fa-5x text-primary"></i>
+                </div>
+                <h4>Tên Của Bạn</h4>
+                <p class="text-muted">Data Scientist & Full Stack Developer</p>
+                <p class="mb-3">
+                    Phát triển dự án như một phần của khóa học Machine Learning và Data Science.
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/trAnhDuy204" class="btn btn-outline-primary btn-sm mx-1">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/tr%E1%BA%A7n-h%C3%A0-anh-duy-tran-3714b9380/" class="btn btn-outline-info btn-sm mx-1">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZczwJvbBGqnSbQPQFHZxDhclRSxFhcPmZTQCMQtrFWsbQmsMtRVHrWqtkBBfTzkvsRhrL" class="btn btn-outline-danger btn-sm mx-1">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-box text-center py-5 rounded shadow-lg">
+    <h2 class="text-white mb-3">Sẵn Sàng Thử Ngay?</h2>
+    <p class="text-white mb-4">Khám phá mức lương phù hợp cho công việc của bạn</p>
+    <a href="{{ url_for('main.predict') }}" class="btn btn-light btn-lg px-5">
+        <i class="fas fa-rocket"></i> Bắt Đầu Dự Đoán
+    </a>
+</div>
+
+<style>
+.feature-icon-large {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hover-card {
+    transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-badge {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    z-index: 10;
+    box-shadow: 0 0 0 4px white;
+}
+
+.timeline-panel {
+    width: 45%;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:nth-child(odd) .timeline-panel {
+    margin-right: auto;
+}
+
+.timeline-item:nth-child(even) .timeline-panel {
+    margin-left: auto;
+}
+
+.timeline-panel:hover {
+    transform: scale(1.05);
+}
+
+.bg-purple {
+    background-color: #6f42c1;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.cta-box{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-badge {
+        left: 30px;
+    }
+    
+    .timeline-panel {
+        width: calc(100% - 80px);
+        margin-left: auto !important;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+    }
+}
+</style>
+{% endblock %}
