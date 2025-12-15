@@ -1,0 +1,23 @@
+BUSINESS INSIGHTS - MÔ HÌNH DỰ ĐOÁN LƯƠNG
+======================================================================
+
+Hiệu suất mô hình:
+   • Mô hình có khả năng dự đoán với MAE = 0tr VND (~0.2% lương)
+   • R² = 0.998 nghĩa là mô hình giải thích được 99.8% phương sai của lương
+   • Cross-validation ổn định với std = 0tr VND
+
+Độ chính xác theo nhóm:
+   • Dự đoán tốt nhất cho cấp bậc: Chưa cập nhật (MAE = 0)
+   • Dự đoán kém nhất cho cấp bậc: Trưởng nhóm (MAE = 0)
+   • 99.8% dự đoán có sai số dưới 20%
+
+Features quan trọng:
+   • Top 3 features: salary_range, salary_range_ratio, exp_position_interaction
+   • Kinh nghiệm và cấp bậc là yếu tố ảnh hưởng mạnh nhất đến lương
+   • Địa điểm và kỹ năng cũng có tác động đáng kể
+
+Phân cụm công việc:
+   • Có thể chia thị trường thành 4 nhóm công việc chính
+   • Mỗi cluster có đặc điểm riêng về lương, kinh nghiệm và yêu cầu
+   • Hữu ích cho định vị và chiến lược tuyển dụng
+

@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Kết Quả Dự Đoán - Salary Predictor{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <!-- Success Message -->
+        <div class="alert alert-success shadow-sm mb-4" role="alert">
+            <h4 class="alert-heading">
+                <i class="fas fa-check-circle"></i> Dự Đoán Thành Công!
+            </h4>
+            <p class="mb-0">Mô hình đã phân tích thông tin của bạn và đưa ra dự đoán mức lương.</p>
+        </div>
+        
+        <!-- Main Result Card -->
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-gradient text-white text-center py-4">
+                <h2 class="mb-2">
+                    <i class="fas fa-money-bill-wave"></i> Kết Quả Dự Đoán
+                </h2>
+                <p class="mb-0">Cho vị trí: <strong>{{ input_data.job_title }}</strong></p>
+            </div>
+            
+            <div class="card-body p-4">
+                <!-- Predicted Salary -->
+                <div class="text-center mb-4 salary-result">
+                    <p class="text-muted mb-2">MỨC LƯƠNG DỰ ĐOÁN</p>
+                    <h1 class="display-3 fw-bold text-primary mb-3">
+                        {{ "{:,.0f}".format(result.predicted_salary) }} <small class="text-muted fs-4">Triệu VND</small>
+                    </h1>
+                    <span class="badge bg-{{ 'success' if result.salary_category == 'Cao' else 'warning' if result.salary_category in ['Trung bình cao', 'Trung bình thấp'] else 'secondary' }} fs-5 px-4 py-2">
+                        {{ result.salary_category }}
+                    </span>
+                </div>
+                
+                <!-- Confidence Interval -->
+                <div class="alert alert-info text-center">
+                    <h5 class="mb-2">
+                        <i class="fas fa-chart-line"></i> Khoảng Tin Cậy
+                    </h5>
+                    <p class="mb-0 fs-5">
+                        <strong>{{ result.confidence_interval.lower_formatted }}</strong> 
+                        đến 
+                        <strong>{{ result.confidence_interval.upper_formatted }}</strong>
+                    </p>
+                    <small class="text-muted">Mức lương thực tế có thể nằm trong khoảng này</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input Summary -->
+        <div class="card shadow mb-4">
+            <div class="card-header bg-light">
+                <h4 class="mb-0">
+                    <i class="fas fa-info-circle"></i> Thông Tin Đã Nhập
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-item">
+                            <i class="fas fa-briefcase text-primary"></i>
+                            <strong>Chức danh:</strong> {{ input_data.job_title }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt text-danger"></i>
+                            <strong>Thành phố:</strong> {{ input_data.city }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item">
+                            <i class="fas fa-clock text-info"></i>
+                            <strong>Kinh nghiệm:</strong> {{ input_data.experience }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item">
+                            <i class="fas fa-layer-group text-success"></i>
+                            <strong>Cấp bậc:</strong> {{ input_data.position_level }}
+                        </div>
+                    </div>
+                    {% if input_data.skills %}
+                    <div class="col-12">
+                        <div class="info-item">
+                            <i class="fas fa-code text-warning"></i>
+                            <strong>Kỹ năng:</strong> {{ input_data.skills }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if input_data.job_fields %}
+                    <div class="col-12">
+                        <div class="info-item">
+                            <i class="fas fa-th-large text-purple"></i>
+                            <strong>Lĩnh vực:</strong> {{ input_data.job_fields }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Model Info -->
+        <div class="card shadow mb-4">
+            <div class="card-header bg-light">
+                <h4 class="mb-0">
+                    <i class="fas fa-robot"></i> Thông Tin Mô Hình
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="model-stat">
+                            <h3 class="text-primary">{{ result.model_info.model_type }}</h3>
+                            <p class="text-muted mb-0">Loại mô hình</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="model-stat">
+                            <h3 class="text-success">{{ "{:,.0f}".format(result.model_info.mae) }} VND</h3>
+                            <p class="text-muted mb-0">MAE (Sai số trung bình)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="model-stat">
+                            <h3 class="text-info">{{ "{:.2%}".format(result.model_info.r2) }}</h3>
+                            <p class="text-muted mb-0">R² Score (Độ chính xác)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="text-center">
+            <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-5 me-3">
+                <i class="fas fa-redo"></i> Dự Đoán Mới
+            </a>
+            <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary btn-lg px-5">
+                <i class="fas fa-home"></i> Về Trang Chủ
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.salary-result {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-item {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.info-item i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.model-stat {
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.model-stat:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.badge {
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+</style>
+{% endblock %}

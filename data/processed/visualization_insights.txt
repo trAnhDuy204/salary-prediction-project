@@ -1,0 +1,17 @@
+INSIGHTS TỪ DATA VISUALIZATION
+======================================================================
+
+Phân bổ việc làm:
+   • Top 3 thành phố: Hà Nội, Hồ Chí Minh, Bình Dương
+   • Cấp bậc phổ biến nhất: Nhân viên (65,007 tin)
+   • Lĩnh vực hot nhất: kinh doanh (21,697 tin)
+
+Xu hướng lương:
+   • Lương trung bình: 14tr VND
+   • Lương median: 13tr VND
+   • Khoảng lương phổ biến: 10 - 18tr VND
+
+Kinh nghiệm:
+   • Yêu cầu phổ biến: Không yêu cầu
+   • Tương quan exp-lương: 0.36
+   • Mức tăng lương/năm: ~0tr VND

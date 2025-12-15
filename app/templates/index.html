@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Trang Chủ - Dự Đoán Mức Lương{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-center py-5 bg-light rounded shadow-sm mb-5">
+    <h1 class="display-4 fw-bold text-primary mb-3">
+        <i class="fas fa-money-bill-wave"></i> Hệ Thống Dự Đoán Mức Lương
+    </h1>
+    <p class="lead text-secondary mb-4">
+        Sử dụng Machine Learning để dự đoán mức lương phù hợp dựa trên kinh nghiệm, kỹ năng và vị trí công việc
+    </p>
+    <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-5">
+        <i class="fas fa-calculator"></i> Bắt Đầu Dự Đoán
+    </a>
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-card">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-brain fa-2x"></i>
+                </div>
+                <h5 class="card-title">Machine Learning</h5>
+                <p class="card-text text-secondary">
+                    Sử dụng thuật toán Random Forest được tối ưu hóa với độ chính xác cao
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-card">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-success text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-database fa-2x"></i>
+                </div>
+                <h5 class="card-title">Dữ Liệu Thực Tế</h5>
+                <p class="card-text text-secondary">
+                    Dựa trên 85,000+ tin tuyển dụng từ thị trường lao động Việt Nam
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm hover-card">
+            <div class="card-body text-center">
+                <div class="feature-icon bg-info text-white rounded-circle mx-auto mb-3">
+                    <i class="fas fa-chart-bar fa-2x"></i>
+                </div>
+                <h5 class="card-title">Phân Tích Chi Tiết</h5>
+                <p class="card-text text-secondary">
+                    Cung cấp khoảng tin cậy và phân loại mức lương theo thị trường
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="row g-4 mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-chart-line"></i> Thống Kê Hệ Thống
+        </h2>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card text-center p-4 bg-primary text-white rounded shadow">
+            <h3 class="display-4 fw-bold">85K+</h3>
+            <p class="mb-0">Tin tuyển dụng</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card text-center p-4 bg-success text-white rounded shadow">
+            <h3 class="display-4 fw-bold">R² 0.80+</h3>
+            <p class="mb-0">Độ chính xác</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card text-center p-4 bg-info text-white rounded shadow">
+            <h3 class="display-4 fw-bold">50+</h3>
+            <p class="mb-0">Features</p>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card text-center p-4 bg-warning text-white rounded shadow">
+            <h3 class="display-4 fw-bold">10+</h3>
+            <p class="mb-0">Thành phố</p>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-cogs"></i> Cách Thức Hoạt Động
+        </h2>
+    </div>
+    
+    <div class="col-md-3 text-center">
+        <div class="step-number bg-primary text-white rounded-circle mx-auto mb-3">1</div>
+        <h5>Nhập Thông Tin</h5>
+        <p class="text-secondary">Điền thông tin về công việc, kỹ năng và kinh nghiệm</p>
+    </div>
+    
+    <div class="col-md-3 text-center">
+        <div class="step-number bg-success text-white rounded-circle mx-auto mb-3">2</div>
+        <h5>Xử Lý Dữ Liệu</h5>
+        <p class="text-secondary">Hệ thống tự động xử lý và chuẩn hóa thông tin</p>
+    </div>
+    
+    <div class="col-md-3 text-center">
+        <div class="step-number bg-info text-white rounded-circle mx-auto mb-3">3</div>
+        <h5>Dự Đoán</h5>
+        <p class="text-secondary">Mô hình ML phân tích và đưa ra dự đoán</p>
+    </div>
+    
+    <div class="col-md-3 text-center">
+        <div class="step-number bg-warning text-white rounded-circle mx-auto mb-3">4</div>
+        <h5>Kết Quả</h5>
+        <p class="text-secondary">Nhận mức lương dự đoán với khoảng tin cậy</p>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section text-center py-5 bg-gradient rounded shadow-sm">
+    <h2 class="mb-3">Sẵn Sàng Khám Phá Mức Lương Của Bạn?</h2>
+    <p class="lead mb-4">Chỉ mất 2 phút để có kết quả dự đoán chính xác</p>
+    <a href="{{ url_for('main.predict') }}" class="btn btn-light btn-lg px-5">
+        <i class="fas fa-rocket"></i> Thử Ngay
+    </a>
+</div>
+
+<style>
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+}
+
+.stat-card {
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+</style>
+{% endblock %}
