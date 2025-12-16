@@ -3,6 +3,7 @@
 Dự án Machine Learning dự đoán mức lương dựa trên thông tin công việc, kinh nghiệm và kỹ năng.
 
 link báo cáo chi tiết: https://docs.google.com/document/d/19Thd2pngJVe9ucA_okp67_M3hNhwAXVO/edit?usp=drive_link&ouid=105638465892598627631&rtpof=true&sd=true
+
 link báo cáo thuyết trình: https://docs.google.com/presentation/d/11bP2vSvzWGorVMR28TnoIVOy_7ROwqq8/edit?usp=drive_link&ouid=105638465892598627631&rtpof=true&sd=true
 
 ## 🎯 Tính Năng
