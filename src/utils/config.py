@@ -130,8 +130,8 @@ FLASK_PORT = 5000
 LOG_LEVEL = 'INFO'
 LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 
+# Tạo các thư mục cần thiết nếu chưa tồn tại
 def ensure_directories():
-    """Tạo các thư mục cần thiết nếu chưa tồn tại"""
     directories = [
         RAW_DATA_DIR,
         PROCESSED_DATA_DIR,
@@ -142,8 +142,8 @@ def ensure_directories():
     for directory in directories:
         directory.mkdir(parents=True, exist_ok=True)
 
+# Trả về dictionary chứa tất cả config
 def get_config():
-    """Trả về dictionary chứa tất cả config"""
     return {
         'paths': {
             'raw_data': str(RAW_DATA_FILE),

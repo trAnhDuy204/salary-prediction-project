@@ -137,7 +137,7 @@ class SalaryPredictor:
                 features_df['skills_count'] * features_df['experience_years']
             )
         
-        # 7. Salary range features (nếu có trong input)
+        # 7. Salary range features
         if 'salary_min' in input_data and 'salary_max' in input_data:
             salary_min = float(input_data['salary_min'])
             salary_max = float(input_data['salary_max'])
